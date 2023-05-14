@@ -1,38 +1,281 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    font-family: Poppins, serif;
+    height: calc(100vh - 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+p, h1, h2, h3, h4, h5 {
+    margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Стили для скролла */
+::-webkit-scrollbar {
+    width: 6px;
 }
 
-.App-link {
-  color: #61dafb;
+::-webkit-scrollbar-track {
+    background-color: #d7d7d7;
+    border-radius: 15px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+::-webkit-scrollbar-thumb {
+    background-color: rgba(220, 20, 60, 0.8);
+    border-radius: 15px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+}
+
+.calendar {
+    width: 740px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 741px) {
+    .calendar {
+        width: 100%;
+    }
+}
+
+.calendar__header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(215, 215, 215, 0.4);
+}
+
+.header__title {
+    font-size: 24px;
+    color: #1F1F1F;
+}
+
+.header__add {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.add__span1 {
+    top: 19%;
+    left: 50%;
+    width: 1px;
+    position: absolute;
+    height: 20px;
+    transform: rotate(-90deg);
+    background: crimson;
+}
+
+.add__span2 {
+    top: 50%;
+    left: 19%;
+    width: 20px;
+    position: absolute;
+    height: 1px;
+    transform: rotate(90deg);
+    background: crimson;
+}
+
+.calendar__table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.calendar__containerBody {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 400px;
+}
+
+.calendar__containerHeader table {
+    table-layout: fixed;
+    border: none;
+}
+
+.calendar__table tbody {
+    height: 200px;
+    overflow: scroll;
+}
+
+.calendar__table th {
+    padding: 5px;
+    text-align: center;
+}
+
+.table__weekDayNames {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.table__weekDays {
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    width: calc(100% / 8);
+}
+
+.weekDays__selected {
+    position: relative;
+    color: #ffffff;
+}
+
+.table__selected {
+    background: rgba(220, 20, 60, 0.85);
+    border-radius: 50%;
+    width: 40%;
+    height: 100%;
+    top: 0;
+    left: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+@media (max-width: 425px) {
+    .table__selected {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 30%;
+    }
+}
+
+.table__arrow {
+    cursor: pointer;
+    color: crimson;
+    user-select: none;
+}
+
+.table__date {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.table__headBorder {
+    border-bottom: 1px solid rgba(215, 215, 215, 0.4);
+}
+
+.table__tdTime {
+    color: #969696;
+    font-size: 14px;
+    width: calc(100% / 8);
+    padding: 5px;
+    text-align: center;
+}
+
+.table__firstRow {
+    width: calc(100% / 8);
+    padding: 5px;
+    text-align: center;
+    border: 1px solid rgba(215, 215, 215, 0.5);
+    border-top: none;
+}
+
+.table__td {
+    width: calc(100% / 8);
+    padding: 5px;
+    text-align: center;
+    border: 1px solid rgba(215, 215, 215, 0.5);
+}
+
+.table__tdWithText{
+    width: calc(100% / 8);
+    padding: 5px;
+    text-align: center;
+    border: 1px solid rgba(215, 215, 215, 0.5);
+    cursor: pointer;
+}
+
+.bottom__today{
+    color: rgba(220, 20, 60, 0.9);
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* AddEvent */
+
+.addEvent {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addEvent__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 30%;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.addEvent__title {
+    font-size: 24px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #1F1F1F;
+}
+
+.addEvent__text {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    color: #969696;
+}
+
+.addEvent__input {
+    padding: 6px 18px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #1F1F1F;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.addEvent__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
+}
+
+.addEvent__button {
+    cursor: pointer;
+    padding: 6px 36px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #1F1F1F;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    background-color: white;
 }
